@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class Collectablescollected : MonoBehaviour
 {
-    public GameObject scoreText;
-    public int theScore = 0;
+    public  TextMeshProUGUI pilots;
+    public int collectible = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +20,20 @@ public class Collectablescollected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         
+         if (collectible == 10)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        scoreText.GetComponent<Text>().text = "Collectibles:" + theScore + "/10";
-        theScore += 1;
+        if (other.transform.tag == ("Obstacle"))
+        {
+            collectible++;
+            pilots.text = collectible.ToString();
+
+        }
     }
 }
  

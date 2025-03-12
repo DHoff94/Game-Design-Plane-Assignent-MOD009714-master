@@ -5,7 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void PlayGame()
+    public AudioSource audioSource;
+    public AudioClip hoverSound;
+    public AudioClip clickSound;
+
+    public void HoverSound()
+    {
+        audioSource.PlayOneShot(hoverSound);
+    }
+    public void ClickSound()
+    {
+        audioSource.PlayOneShot(clickSound);
+    }
+    public void PlayGame()
     {
         SceneManager.LoadScene("GameMode");
     }
@@ -13,6 +25,19 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("Player Has Quit The Game");
+        
     }
+
+    public void Options()
+    {
+        SceneManager.LoadScene("Options");
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    
+
+
 }
